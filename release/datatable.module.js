@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
+var ngx_scrollbar_1 = require("ngx-scrollbar");
 var components_1 = require("./components");
 var directives_1 = require("./directives");
 var services_1 = require("./services");
@@ -17,7 +18,8 @@ var NgxDatatableModule = /** @class */ (function () {
     NgxDatatableModule = __decorate([
         core_1.NgModule({
             imports: [
-                common_1.CommonModule
+                common_1.CommonModule,
+                ngx_scrollbar_1.NgScrollbarModule
             ],
             providers: [
                 services_1.ScrollbarHelper,

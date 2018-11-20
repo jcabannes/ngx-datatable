@@ -3,6 +3,11 @@
  * Copyright 2016
  * Licensed under MIT
  */
+::ng-deep .custom-scrollbars {
+  background-color: #5eafff !important; }
+  ::ng-deep .custom-scrollbars:hover, ::ng-deep .custom-scrollbars:active {
+    background-color: dodgerblue !important; }
+
 .ngx-datatable {
   display: block;
   overflow: hidden;
