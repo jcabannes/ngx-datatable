@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 import {
   DatatableComponent,
@@ -43,7 +44,8 @@ import {
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    NgScrollbarModule
   ],
   providers: [
     ScrollbarHelper,

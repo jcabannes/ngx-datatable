@@ -1,3 +1,12 @@
+::ng-deep {
+  .custom-scrollbars {
+    background-color: rgb(94, 175, 255) !important;
+    &:hover, &:active {
+      background-color: dodgerblue !important;
+    }
+  }
+}
+
 .ngx-datatable {
   display: block;
   overflow:hidden;
