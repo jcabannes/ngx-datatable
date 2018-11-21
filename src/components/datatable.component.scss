@@ -310,3 +310,40 @@
     }
   }
 }
+
+.scrollbar-external {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.external-scroll_y {
+  border: solid 1px #9999fc;
+  cursor: pointer;
+  display: none;
+  position: absolute;
+}
+
+.external-scroll_y.scroll-scrolly_visible {
+  display: block;
+  height: 200px;
+  left: 610px;
+  top: 0;
+  width: 10px;
+}
+
+.external-scroll_y div{
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.external-scroll_y .scroll-bar {
+  background: #9999fc;
+  z-index: 12;
+}
+
+.external-scroll_y .scroll-bar {
+  height: 100px;
+}

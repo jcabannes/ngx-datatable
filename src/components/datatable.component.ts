@@ -5,7 +5,7 @@ import {
   DoCheck, KeyValueDiffers, KeyValueDiffer, ViewEncapsulation,
   ChangeDetectionStrategy, ChangeDetectorRef, SkipSelf, OnDestroy
 } from '@angular/core';
-
+import * as $ from 'jquery';
 import {
   forceFillColumnWidths, adjustColumnWidths, sortRows,
   setColumnDefaults, throttleable, translateTemplates,
@@ -50,44 +50,53 @@ import { BehaviorSubject, Subscription } from 'rxjs';
         (select)="onHeaderSelect($event)"
         (columnContextmenu)="onColumnContextmenu($event)">
       </datatable-header>
-      <datatable-body
-        [groupRowsBy]="groupRowsBy"
-        [groupedRows]="groupedRows"
-        [rows]="_internalRows"
-        [groupExpansionDefault]="groupExpansionDefault"
-        [scrollbarV]="scrollbarV"
-        [scrollbarH]="scrollbarH"
-        [virtualization]="virtualization"
-        [loadingIndicator]="loadingIndicator"
-        [externalPaging]="externalPaging"
-        [rowHeight]="rowHeight"
-        [rowCount]="rowCount"
-        [offset]="offset"
-        [trackByProp]="trackByProp"
-        [columns]="_internalColumns"
-        [pageSize]="pageSize"
-        [offsetX]="_offsetX | async"
-        [rowDetail]="rowDetail"
-        [groupHeader]="groupHeader"
-        [selected]="selected"
-        [innerWidth]="_innerWidth"
-        [bodyHeight]="bodyHeight"
-        [selectionType]="selectionType"
-        [emptyMessage]="messages.emptyMessage"
-        [rowIdentity]="rowIdentity"
-        [rowClass]="rowClass"
-        [selectCheck]="selectCheck"
-        [displayCheck]="displayCheck"
-        [summaryRow]="summaryRow"
-        [summaryHeight]="summaryHeight"
-        [summaryPosition]="summaryPosition"
-        (page)="onBodyPage($event)"
-        (activate)="activate.emit($event)"
-        (rowContextmenu)="onRowContextmenu($event)"
-        (select)="onBodySelect($event)"
-        (scroll)="onBodyScroll($event)"
-        (treeAction)="onTreeAction($event)">
-      </datatable-body>
+      <div class="scrollbar-external">
+        <datatable-body
+          [groupRowsBy]="groupRowsBy"
+          [groupedRows]="groupedRows"
+          [rows]="_internalRows"
+          [groupExpansionDefault]="groupExpansionDefault"
+          [scrollbarV]="scrollbarV"
+          [scrollbarH]="scrollbarH"
+          [virtualization]="virtualization"
+          [loadingIndicator]="loadingIndicator"
+          [externalPaging]="externalPaging"
+          [rowHeight]="rowHeight"
+          [rowCount]="rowCount"
+          [offset]="offset"
+          [trackByProp]="trackByProp"
+          [columns]="_internalColumns"
+          [pageSize]="pageSize"
+          [offsetX]="_offsetX | async"
+          [rowDetail]="rowDetail"
+          [groupHeader]="groupHeader"
+          [selected]="selected"
+          [innerWidth]="_innerWidth"
+          [bodyHeight]="bodyHeight"
+          [selectionType]="selectionType"
+          [emptyMessage]="messages.emptyMessage"
+          [rowIdentity]="rowIdentity"
+          [rowClass]="rowClass"
+          [selectCheck]="selectCheck"
+          [displayCheck]="displayCheck"
+          [summaryRow]="summaryRow"
+          [summaryHeight]="summaryHeight"
+          [summaryPosition]="summaryPosition"
+          (page)="onBodyPage($event)"
+          (activate)="activate.emit($event)"
+          (rowContextmenu)="onRowContextmenu($event)"
+          (select)="onBodySelect($event)"
+          (scroll)="onBodyScroll($event)"
+          (treeAction)="onTreeAction($event)">
+        </datatable-body>
+      </div>
+      <div class="external-scroll_y">
+        <div class="scroll-element_outer">
+            <div class="scroll-element_size"></div>
+            <div class="scroll-element_track"></div>
+            <div class="scroll-bar"></div>
+        </div>
+      </div>
       <datatable-footer
         *ngIf="footerHeight"
         [rowCount]="rowCount"
@@ -730,6 +739,13 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     // if the table is hidden the visibility
     // listener will invoke this itself upon show
     this.recalculate();
+
+    $(document).ready(function(){
+      $('.scrollbar-external').scrollbar({
+          "autoScrollSize": false,
+          "scrolly": $('.external-scroll_y')
+      });
+  });
   }
 
   /**
